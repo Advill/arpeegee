@@ -452,13 +452,13 @@ public class tester
 		char direction = D.getDirection(input);
 		System.out.println(direction);
 		if(direction == 'n')
-			System.out.println(P.goNorth());
+			System.out.println(P.goNorth(M));
 		else if(direction == 's')
-			System.out.println(P.goSouth());
+			System.out.println(P.goSouth(M));
 		else if(direction == 'e')
-			System.out.println(P.goEast());
+			System.out.println(P.goEast(M));
 		else if(direction == 'w')
-			System.out.println(P.goWest());
+			System.out.println(P.goWest(M));
 			
 		M.printMap(P);
 	}

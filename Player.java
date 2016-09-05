@@ -162,7 +162,7 @@ public class Player extends Monster
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	//moving directions on the map
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public String goNorth()//north
+	public String goNorth(Map M)//north
 	{
 		if(playerx > 0)
 		{
@@ -172,9 +172,9 @@ public class Player extends Monster
 		else
 			return "You cannot move any further north!";
 	}
-	public String goSouth()//south
+	public String goSouth(Map M)//south
 	{
-		if(playerx < 9)
+		if(playerx < M.getLength())
 		{
 			playerx ++;
 			return "you move south.";
@@ -182,9 +182,9 @@ public class Player extends Monster
 		else
 			return "you cannot move any further south!";
 	}
-	public String goEast()//east
+	public String goEast(Map M)//east
 	{
-		if(playery < 9)
+		if(playery < M.getLength())
 		{
 			playery++;
 			return "you move east.";
@@ -192,7 +192,7 @@ public class Player extends Monster
 		else
 			return "you cannot move any further east!";
 	}
-	public String goWest()//west
+	public String goWest(Map M)//west
 	{
 		if(playery > 0)
 		{

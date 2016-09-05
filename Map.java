@@ -186,4 +186,12 @@ public class Map
 		}
 		return str;
 	}
+	public int getLength()
+	{
+		return(map.length);
+	}
+	public int getWidth()
+	{
+		return(map[0].length);
+	}
 }
