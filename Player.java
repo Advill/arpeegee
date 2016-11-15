@@ -1,18 +1,18 @@
 import java.util.*;
-public class Player extends Monster
-{
+
+public class Player extends Monster {
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//attributes
+	// attributes
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	private ArrayList<Item> pack = new ArrayList<Item>(0); 
+	private ArrayList<Item> pack = new ArrayList<Item>(0);
 	private int exp;
 	private int playerx;
 	private int playery;
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//default Constructor	hp/atk/def/spd
+	// default Constructor hp/atk/def/spd
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public Player(String n, int hp, int atk, int def, int spd)
-	{
+	public Player(String n, int hp, int atk, int def, int spd) {
 		super(n, hp, atk, def, spd);
 		exp = 0;
 		pack = new ArrayList<Item>(0);
@@ -20,186 +20,171 @@ public class Player extends Monster
 		playery = 0;
 		exp = 0;
 	}
-	public String taunt()
-	{
+
+	public String taunt() {
 		return "";
 	}
-	public String talkTo()
-	{
+
+	public String talkTo() {
 		return "";
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//getters and setters
+	// getters and setters
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public ArrayList<Item> getItems()
-	{
+	public ArrayList<Item> getItems() {
 		return pack;
 	}
-	public int getXp()
-	{
+
+	public int getXp() {
 		return exp;
 	}
-	public int getX()
-	{
+
+	public int getX() {
 		return playerx;
 	}
-	public int getY()
-	{
+
+	public int getY() {
 		return playery;
 	}
-	public boolean levelup()
-	{
-		if(exp >= 100)
+
+	public boolean levelup() {
+		if (exp >= 100)
 			return true;
 		return false;
 	}
-	public void setXY(int x, int y)
-	{
+
+	public void setXY(int x, int y) {
 		playerx = x;
 		playery = y;
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//print items and add items
+	// print items and add items
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public void getPack()
-	{
-		for(int i = 0; i < pack.size(); i++)
-		{
+	public void getPack() {
+		for (int i = 0; i < pack.size(); i++) {
 			System.out.println(pack.get(i).getItem());
 		}
 	}
-	public void additem(int id)
-	{
+
+	public void additem(int id) {
 		pack.add(new Item(id));
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//add xp
+	// add xp
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public void addXp(int xp)
-	{
+	public void addXp(int xp) {
 		exp = exp + xp;
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//level up
+	// level up
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public void levelAtk()
-	{
+	public void levelAtk() {
 		exp -= 100;
 		super.atkInc(5);
 	}
-	public void levelDef()
-	{
+
+	public void levelDef() {
 		exp -= 100;
 		super.defInc(5);
 	}
-	public void levelSpd()
-	{
+
+	public void levelSpd() {
 		exp -= 100;
 		super.defInc(5);
 	}
-	public void levelHp()
-	{
+
+	public void levelHp() {
 		exp -= 100;
 		super.healthInc(10);
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//inspect self
+	// inspect self
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public String inspect()
-	{
-		return("You are an explorer named " + super.getName() + ". You have " + super.getAtk() + " attack, " + super.getDef() + " defense, and " + super.getSpd() + " Speed. \n You have " + super.getHp() + " Health remaining out of " + super.getMHp());
+	public String inspect() {
+		return ("You are an explorer named " + super.getName() + ". You have " + super.getAtk() + " attack, "
+				+ super.getDef() + " defense, and " + super.getSpd() + " Speed. \n You have " + super.getHp()
+				+ " Health remaining out of " + super.getMHp());
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//using an item, input an id to decide
+	// using an item, input an id to decide
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public void useItem(int i)
-	{
+	public void useItem(int i) {
 		int itemid = -1;
-		for(int x = 0; x < pack.size(); x++)
-		{
-			if(pack.get(x).equals(i))
-			{
+		for (int x = 0; x < pack.size(); x++) {
+			if (pack.get(x).equals(i)) {
 				itemid = x;
 				break;
 			}
 		}
-		if(itemid == -1)
-		{
+		if (itemid == -1) {
 			System.out.println("You dont have that item.");
-		}
-		else
-		{
-			if(i == 0)
-			{
+		} else {
+			if (i == 0) {
 				System.out.println("You gain ten health!");
 				super.healthInc(10);
-			}
-			else if(i == 1)
-			{
+			} else if (i == 1) {
 				System.out.println("You gain five speed!");
 				super.spdInc(5);
-			}
-			else if(i == 2)
-			{
+			} else if (i == 2) {
 				System.out.println("You gaina five defense!");
 				super.defInc(5);
-			}
-			else if(i == 3)
-			{
+			} else if (i == 3) {
 				System.out.println("You gain five attack!");
 				super.atkInc(5);
 			}
 			pack.remove(i);
 		}
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//testing if the player has an item
+	// testing if the player has an item
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean hasItem()
-	{
-		return(pack.size() >= 1);
+	public boolean hasItem() {
+		return (pack.size() >= 1);
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//moving directions on the map
+	// moving directions on the map
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public String goNorth(Map M)//north
+	public String goNorth(Map M)// north
 	{
-		if(playerx > 0)
-		{
-			playerx --;
+		if (playerx > 0) {
+			playerx--;
 			return "You move north.";
-		}
-		else
+		} else
 			return "You cannot move any further north!";
 	}
-	public String goSouth(Map M)//south
+
+	public String goSouth(Map M)// south
 	{
-		if(playerx < M.getLength())
-		{
-			playerx ++;
+		if (playerx < M.getLength()) {
+			playerx++;
 			return "you move south.";
-		}
-		else
+		} else
 			return "you cannot move any further south!";
 	}
-	public String goEast(Map M)//east
+
+	public String goEast(Map M)// east
 	{
-		if(playery < M.getLength())
-		{
+		if (playery < M.getLength()) {
 			playery++;
 			return "you move east.";
-		}
-		else
+		} else
 			return "you cannot move any further east!";
 	}
-	public String goWest(Map M)//west
+
+	public String goWest(Map M)// west
 	{
-		if(playery > 0)
-		{
-			playery --;
+		if (playery > 0) {
+			playery--;
 			return "You move west.";
-		}
-		else
+		} else
 			return "you cannot move any further west!";
 	}
 }

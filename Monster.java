@@ -1,8 +1,7 @@
 //default battle state character
-public abstract class Monster
-{
+public abstract class Monster {
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//attributes
+	// attributes
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	private String name;
 	private int health;
@@ -13,11 +12,11 @@ public abstract class Monster
 	private int atkmod;
 	private int defmod;
 	private int spdmod;
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//constructors		hp/atk/def/spd
+	// constructors hp/atk/def/spd
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public Monster(String n, int hp, int atk, int def, int spd)
-	{
+	public Monster(String n, int hp, int atk, int def, int spd) {
 		name = n;
 		health = hp;
 		maxhealth = hp;
@@ -28,116 +27,114 @@ public abstract class Monster
 		defmod = 0;
 		spdmod = 0;
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//getters
+	// getters
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
-	public int getHp()
-	{
+
+	public int getHp() {
 		return health;
 	}
-	public int getMHp()
-	{
+
+	public int getMHp() {
 		return maxhealth;
 	}
-	public int getAtk()
-	{
+
+	public int getAtk() {
 		return attack;
 	}
-	public int getDef()
-	{
+
+	public int getDef() {
 		return defense;
 	}
-	public int getSpd()
-	{
+
+	public int getSpd() {
 		return speed;
 	}
-	public int getAtkMod()
-	{
+
+	public int getAtkMod() {
 		return atkmod;
 	}
-	public int getDefMod()
-	{
+
+	public int getDefMod() {
 		return defmod;
 	}
-	public int getSpdMod()
-	{
+
+	public int getSpdMod() {
 		return spdmod;
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//heal
+	// heal
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public void heal(int amount)
-	{
+	public void heal(int amount) {
 		int count = 0;
-		for(int i = amount; i > 0; i--)
-		{
-			if(health < maxhealth)
-			{
-				health ++;
+		for (int i = amount; i > 0; i--) {
+			if (health < maxhealth) {
+				health++;
 				count++;
-			}
-			else
-				if(count > 0)
-					System.out.println("You heal " + count + " HP!");
-				break;
+			} else if (count > 0)
+				System.out.println("You heal " + count + " HP!");
+			break;
 		}
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//modified stats
+	// modified stats
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public int getFullSpd()
-	{
+	public int getFullSpd() {
 		return (speed + spdmod);
 	}
-	public int getFullDef()
-	{
+
+	public int getFullDef() {
 		return (defense + defmod);
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//damage = defense divided by two minus attack
+	// damage = defense divided by two minus attack
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public int damage(int dmg)
-	{
+	public int damage(int dmg) {
 		int damage = (getFullDef() / 2) - dmg;
-		if(damage < 0)
-		{
+		if (damage < 0) {
 			health += damage;
-			return ( -1 * damage);
+			return (-1 * damage);
 		}
 		return 0;
 	}
-	public int attack()
-	{
+
+	public int attack() {
 		return (attack + atkmod);
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//adders, mostly for player but may add monster self-buffs
+	// adders, mostly for player but may add monster self-buffs
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	public void healthInc(int amount)
-	{
+	public void healthInc(int amount) {
 		maxhealth += amount;
 		health += amount;
 	}
-	public void atkInc(int amount)
-	{
-		attack+= amount;
+
+	public void atkInc(int amount) {
+		attack += amount;
 	}
-	public void defInc(int amount)
-	{
-		defense+= amount;
+
+	public void defInc(int amount) {
+		defense += amount;
 	}
-	public void spdInc(int amount)
-	{
-		speed+= amount;
+
+	public void spdInc(int amount) {
+		speed += amount;
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	//abstracts
+	// abstracts
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	public abstract String talkTo();
+
 	public abstract String taunt();
+
 	public abstract String inspect();
 }
